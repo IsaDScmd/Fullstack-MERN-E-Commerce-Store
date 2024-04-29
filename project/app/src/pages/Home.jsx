@@ -4,7 +4,7 @@ import { Routes, Route, useNavigate, Link } from 'react-router-dom'
 import { useUser } from "../hooks/UserContext"
 
 import logic from '../logic'
-import { Login, Packings, RawMaterial, Register, Utensils, Recipes, Favorites, Cart, RecipeDetail } from '../components'
+import { Login, Packings, RawMaterial, Register, Utensils, Recipes, Favorites, Cart, RecipeDetail, ProductDetail } from '../components'
 
 
 export default function Home() {
@@ -174,6 +174,7 @@ export default function Home() {
                 <Route path="/utensils" element={<Utensils favProducts={favProducts} onSuccess={refreshProducts} />} />
                 <Route path="/recipes" element={<Recipes />} />
                 <Route path="/recipes/:type/:recipeId" element={<RecipeDetail />} />
+                <Route path="/products/:productId" element={<ProductDetail />} />
                 <Route path="/recipes/make-up" element={<Recipes type='Make-up' />} />
                 <Route path="/recipes/treatment" element={<Recipes type='Treatment' />} />
                 <Route path="/recipes/hair" element={<Recipes type='Hair' />} />

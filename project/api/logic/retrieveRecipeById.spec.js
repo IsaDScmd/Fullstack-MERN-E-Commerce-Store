@@ -57,7 +57,7 @@ describe('retrieveRecipeById', () => {
         return retrieveRecipeById(nonExistingRecipeId)
             .catch(error => {
                 expect(error).to.be.instanceOf(NotFoundError)
-                expect(error.message).to.equal(`Recipe not found`)
+                expect(error.message).to.equal('Recipe not found')
             })
     })
 

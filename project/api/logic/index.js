@@ -12,6 +12,7 @@ import deleteOrder from './deleteOrder.js'
 import updateCartItemQuantity from './updateCartItemQuantity.js'
 import retrieveUserOrder from './retrieveUserOrder.js'
 import retrieveRecipeById from './retrieveRecipeById.js'
+import retrieveProductsById from './retrieveProductsById.js'
 
 
 const logic = {
@@ -28,7 +29,8 @@ const logic = {
     deleteOrder,
     updateCartItemQuantity,
     retrieveUserOrder,
-    retrieveRecipeById
+    retrieveRecipeById,
+    retrieveProductsById
 }
 
 export default logic

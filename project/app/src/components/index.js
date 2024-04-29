@@ -9,6 +9,7 @@ import Utensils from './Utensils'
 import Favorites from './Favorites'
 import Cart from './Cart'
 import RecipeDetail from './RecipeDetail'
+import ProductDetail from './ProductDetail'
 
 
 export {
@@ -22,5 +23,6 @@ export {
     Utensils,
     Favorites,
     Cart,
-    RecipeDetail
+    RecipeDetail,
+    ProductDetail
 }

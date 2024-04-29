@@ -258,46 +258,65 @@ header {
   }
 }
 
-.details-overlay {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 460px;
-  max-width: 90%;
-  max-height: 90vh;
-  padding: 15px;
-  background-color: rgba(180, 198, 216, 0.941);
-  border-radius: 5px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  z-index: 1;
+
+/* PRODUCTS DETAILS*/
+.product-details {
+  background: white;
+  width: 80%;
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 25px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
 }
 
-.details-content {
-  padding: 10px;
-  text-align: left;
+.product-image-details {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  margin: 20px auto;
+  display: block;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(137, 135, 237, 0.5);
 }
 
-.details-content h2 {
-  font-size: 20px;
-  font-weight: bold;
+.product-h2-details {
+  color: #2C3E50;
+  font-size: 28px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.product-price-details {
+  font-size: 18px;
+  color: #666;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.product-description-details {
+  font-size: 16px;
   color: #333;
   margin-top: 0;
-  margin-bottom: 10px;
+  line-height: 1.5;
 }
 
-.close-button {
-  background-color: #fff;
-  color: #818d9a;
+.button-back-details {
+  display: block;
+  margin: 20px auto;
+  background-color: #8987ed;
+  color: #f9f9f9;
   border: none;
-  padding: 8px 16px;
+  text-decoration: none;
+  padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-.close-button:hover {
-  background-color: #F0F0F0;
+.button-back-details:hover {
+  background-color: #5a58a7;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -356,6 +375,8 @@ header {
   margin-top: 50px;
 }
 
+
+/* RECIPES DETAILS*/
 .recipe-details {
   display: flex;
   align-items: flex-start;
@@ -397,6 +418,22 @@ header {
 
 .recipe-details-two ul li {
   margin-bottom: 5px;
+}
+
+.button-recipe-back-details {
+  padding: 10px 20px;
+  background-color: #8987ed;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  align-self: start;
+  margin-top: 20px;
+}
+
+.button-recipe-back-details:hover {
+  background-color: #5a58a7;
 }
 
 

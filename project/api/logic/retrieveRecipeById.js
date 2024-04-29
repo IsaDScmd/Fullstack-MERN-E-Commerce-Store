@@ -6,11 +6,11 @@ const { NotFoundError, SystemError } = errors
 function retrieveRecipeById(recipeId) {
     validate.id(recipeId, 'recipe id')
 
-    return Recipe.findById(recipeId).populate('products').lean()
+    return Recipe.findById(recipeId).populate('products').select('-__v').lean()
         .catch(error => { throw new SystemError(error.message) })
         .then(recipe => {
             if (!recipe)
-                throw new NotFoundError(`Recipe not found`)
+                throw new NotFoundError('Recipe not found')
 
             recipe.id = recipe._id.toString()
 

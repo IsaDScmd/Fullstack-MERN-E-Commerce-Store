@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { useUser } from "../hooks/UserContext"
+import { Link } from 'react-router-dom'
 import logic from '../logic'
 
 
-export default function Product({ id, name, image, price, description, onSuccess, favProducts, isCartView }) {
+export default function Product({ id, name, image, price, onSuccess, favProducts, isCartView }) {
 
-    const [showDetails, setShowDetails] = useState(false)
     const [isProductFav, setIsProductFav] = useState(false)
 
     const { isLoggedIn } = useUser()
@@ -30,11 +30,6 @@ export default function Product({ id, name, image, price, description, onSuccess
         }
     }
 
-    const handleDetailsClick = () => {
-        console.log(`Detalles del producto ${name}`)
-        setShowDetails(!showDetails)
-    }
-
     const handleToggleFavClick = () => {
         try {
             logic.toggleFavProduct(id)
@@ -53,17 +48,9 @@ export default function Product({ id, name, image, price, description, onSuccess
             <p>Precio: {price}</p>
             {!isCartView && <>
                 {isLoggedIn && <button className="cart-button" onClick={handleAddToCart}>🛍️</button>}
-                <button className="details-button" onClick={handleDetailsClick}>Ver detalles</button>
-                {isLoggedIn && <button className="favs-button" onClick={handleToggleFavClick}>{isProductFav ? "🩷" : "💟"}</button>}</>}
-            {showDetails && (
-                <div className="details-overlay">
-                    <div className="details-content">
-                        <h2>{name}</h2>
-                        <p>{description}</p>
-                        <button className="close-button" onClick={handleDetailsClick}>Ocultar detalles</button>
-                    </div>
-                </div>
-            )}
+                <Link to={`/products/${id}`} className="details-button">Ver detalles</Link>
+                {isLoggedIn && <button className="favs-button" onClick={handleToggleFavClick}>{isProductFav ? "🩷" : "💟"}</button>}
+            </>}
         </div>
     )
 }

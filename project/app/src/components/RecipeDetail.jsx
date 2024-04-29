@@ -36,6 +36,7 @@ export default function RecipeDetail() {
                                 <li key={index}>{line}</li>
                             ))}
                         </ul>
+                        <button className="button-recipe-back-details" onClick={() => window.history.back()}>Regresar</button>
                     </div>
                 </div>
             )}

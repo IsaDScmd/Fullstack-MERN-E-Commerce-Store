@@ -19,7 +19,8 @@ import {
     retrieveUserOrderHandler,
     updateCartItemQuantityHandler,
     deleteOrderHandler,
-    retrieveRecipeByIdHandler
+    retrieveRecipeByIdHandler,
+    retrieveProductsByIdHandler
 } from './handlers/index.js'
 
 mongoose.connect(process.env.MONGODB_URL)
@@ -71,6 +72,9 @@ mongoose.connect(process.env.MONGODB_URL)
 
         // RETRIEVE RECIPE BY ID
         server.get('/recipe/:recipeId', retrieveRecipeByIdHandler)
+
+        // RETRIEVE PRODUCTS BY ID
+        server.get('/product/:productId', retrieveProductsByIdHandler)
 
         server.listen(process.env.PORT, () => console.log(`server running on port ${process.env.PORT}`))
     })
