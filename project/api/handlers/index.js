@@ -13,6 +13,7 @@ import updateCartItemQuantityHandler from './updateCartItemQuantityHandler.js'
 import deleteOrderHandler from './deleteOrderHandler.js'
 import retrieveRecipeByIdHandler from './retrieveRecipeByIdHandler.js'
 import retrieveProductsByIdHandler from './retrieveProductsByIdHandler.js'
+import findProductsByNameHandler from './findProductsByNameHandler.js'
 
 
 export {
@@ -30,5 +31,6 @@ export {
     updateCartItemQuantityHandler,
     deleteOrderHandler,
     retrieveRecipeByIdHandler,
-    retrieveProductsByIdHandler
+    retrieveProductsByIdHandler,
+    findProductsByNameHandler
 }

@@ -20,7 +20,8 @@ import {
     updateCartItemQuantityHandler,
     deleteOrderHandler,
     retrieveRecipeByIdHandler,
-    retrieveProductsByIdHandler
+    retrieveProductsByIdHandler,
+    findProductsByNameHandler
 } from './handlers/index.js'
 
 mongoose.connect(process.env.MONGODB_URL)
@@ -42,6 +43,9 @@ mongoose.connect(process.env.MONGODB_URL)
 
         //CREATE PRODUCT
         server.post('/products', jsonBodyParser, createProductHandler)
+
+        // FIND PRODUCTS BY NAME
+        server.get('/products/search/by-name', findProductsByNameHandler)
 
         // RETRIEVE PRODUCTS BY TYPE
         server.get('/products/:type', retrieveProductsByTypeHandler)

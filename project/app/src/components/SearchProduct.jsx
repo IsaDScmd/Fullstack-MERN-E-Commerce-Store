@@ -1,47 +1,41 @@
-// import React, { useState, useEffect } from 'react'
-// import logic from '../logic'
+import React, { useState } from 'react';
+import axios from 'axios';
 
-// function SearchProduct() {
-//     const [searchTerm, setSearchTerm] = useState('');
-//     const [loading, setLoading] = useState(false);
-//     const [products, setProducts] = useState([]);
+function SearchProduct() {
+    const [searchTerm, setSearchTerm] = useState('');
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(false);
 
-//     useEffect(() => {
-//         const timerId = setTimeout(() => {
-//             if (searchTerm) {
-//                 setLoading(true)
-//                 logic.retrieveProducts({ search: searchTerm })
-//                     .then(products => {
-//                         setProducts(products);
-//                         setLoading(false);
-//                     })
-//                     .catch(error => {
-//                         console.error('Error al buscar productos:', error)
-//                         setLoading(false)
-//                     })
-//             }
-//         }, 500)
+    const handleSearch = async (event) => {
+        event.preventDefault();
+        setLoading(true);
+        axios.get(`/api/search?query=${searchTerm}`)
+            .then(response => {
+                setProducts(response.data);
+                setLoading(false);
+            })
+            .catch(error => {
+                console.error('Search failed:', error);
+                setLoading(false);
+            });
+    };
 
-//         return () => clearTimeout(timerId)
-//     }, [searchTerm])
+    return (
+        <div>
+            <form onSubmit={handleSearch}>
+                <input type="text" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} placeholder="Search for products..." />
+                <button type="submit">Search</button>
+            </form>
+            {loading ? <p>Loading...</p> : null}
+            <ul>
+                {products.length > 0 ? (
+                    products.map(product => <li key={product.id}>{product.name}</li>)
+                ) : (
+                    !loading && <p>No products found.</p>
+                )}
+            </ul>
+        </div>
+    );
+}
 
-//     return (
-//         <div className="search-container">
-//             <input
-//                 className="search-input"
-//                 type="text"
-//                 placeholder="Buscar productos..."
-//                 value={searchTerm}
-//                 onChange={(e) => setSearchTerm(e.target.value)}
-//             />
-//             <button className="search-button" disabled={loading} type="button">
-//                 {loading ? 'Buscando...' : 'Buscar'}
-//             </button>
-//             {products.map(product => (
-//                 <div key={product.id}>{product.name}</div>
-//             ))}
-//         </div>
-//     )
-// }
-
-// export default SearchProduct
+export default SearchProduct

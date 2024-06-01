@@ -13,6 +13,7 @@ import updateCartItemQuantity from './updateCartItemQuantity.js'
 import retrieveUserOrder from './retrieveUserOrder.js'
 import retrieveRecipeById from './retrieveRecipeById.js'
 import retrieveProductsById from './retrieveProductsById.js'
+import findProductsByName from './findProductsByName.js'
 
 
 const logic = {
@@ -30,7 +31,8 @@ const logic = {
     updateCartItemQuantity,
     retrieveUserOrder,
     retrieveRecipeById,
-    retrieveProductsById
+    retrieveProductsById,
+    findProductsByName
 }
 
 export default logic
