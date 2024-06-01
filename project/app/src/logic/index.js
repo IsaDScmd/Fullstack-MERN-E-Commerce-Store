@@ -15,6 +15,7 @@ import updateCartItemQuantity from './updateCartItemQuantity'
 import deleteOrder from './deleteOrder'
 import retrieveRecipeById from './retrieveRecipeById'
 import retrieveProductsById from './retrieveProductsById'
+import findProductsByName from './findProductsByName'
 
 const logic = {
     registerUser,
@@ -33,7 +34,8 @@ const logic = {
     updateCartItemQuantity,
     deleteOrder,
     retrieveRecipeById,
-    retrieveProductsById
+    retrieveProductsById,
+    findProductsByName
 }
 
 export default logic

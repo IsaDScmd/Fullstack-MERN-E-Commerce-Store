@@ -4,7 +4,7 @@ import { Routes, Route, useNavigate, Link } from 'react-router-dom'
 import { useUser } from "../hooks/UserContext"
 
 import logic from '../logic'
-import { Login, Packings, RawMaterial, Register, Utensils, Recipes, Favorites, Cart, RecipeDetail, ProductDetail } from '../components'
+import { Login, Packings, RawMaterial, Register, Utensils, Recipes, Favorites, Cart, RecipeDetail, ProductDetail, Product } from '../components'
 
 
 export default function Home() {
@@ -12,6 +12,9 @@ export default function Home() {
     const [name, setName] = useState(null)
     const [favProducts, setFavProducts] = useState([])
     const [cartItems, setCartItems] = useState([])
+    const [searchTerm, setSearchTerm] = useState('')
+    const [searchResults, setSearchResults] = useState([])
+    const [loading, setLoading] = useState(false)
 
     const navigate = useNavigate()
     const { isLoggedIn, setIsLoggedIn } = useUser()
@@ -83,6 +86,24 @@ export default function Home() {
             .catch(error => alert(error.message))
     }
 
+    const handleSearch = (term) => {
+        setLoading(true)
+        logic.findProductsByName(term)
+            .then(data => {
+                setSearchResults(data)
+                setLoading(false)
+            })
+            .catch(error => {
+                console.error('Search failed:', error)
+                setLoading(false)
+            })
+    }
+
+    const handleChange = (event) => {
+        setSearchTerm(event.target.value)
+        handleSearch(event.target.value)
+    }
+
     const handleHomeClick = (event) => {
         event.preventDefault()
 
@@ -137,8 +158,16 @@ export default function Home() {
                 <div className="home-header">
                     <h1><Link className="home-link" onClick={handleHomeClick}>Maketics Shop</Link></h1>
                     <div className="search-container">
-                        <input className="search-input" type="text" placeholder="Proximamente..." />
-                        <button className="search-button" type="submit">Buscar</button>
+                        <form onSubmit={(e) => { e.preventDefault(); handleSearch(searchTerm) }}>
+                            <input
+                                className="search-input"
+                                type="text"
+                                value={searchTerm}
+                                onChange={handleChange}
+                                placeholder="Buscar..."
+                            />
+                            <button className="search-button" type="submit">Buscar</button>
+                        </form>
                     </div>
                 </div>
             </header>
@@ -166,6 +195,19 @@ export default function Home() {
                 <div className="second-section">
                     <h2>Encuentra los mejores productos al mejor precio</h2>
                 </div>
+            </section>
+
+            <section>
+                {loading ? <p>Buscando...</p> : null}
+                {searchResults.length > 0 ? (
+                    <div className="products">
+                        {searchResults.map(product => (
+                            <Product key={product.id} {...product} favProducts={favProducts} onSuccess={refreshProducts} />
+                        ))}
+                    </div>
+                ) : (
+                    <p>No se encontraron productos</p>
+                )}
             </section>
 
             <Routes>
